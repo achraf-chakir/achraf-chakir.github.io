@@ -1,690 +1,175 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amazon Ads Automation Tool</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+export default function AchrafChakirPortfolio() {
+  const products = [
+    {
+      title: "Funny Cute But Feral Raccoon Retro Animal Lover Aesthetic T-Shirt",
+      image: "https://via.placeholder.com/500x500?text=Raccoon+T-Shirt",
+    },
+    {
+      title: "Ain't No Family Like The One I Got Funny Family Crew T-Shirt",
+      image: "https://via.placeholder.com/500x500?text=Family+T-Shirt",
+    },
+    {
+      title: "Please Be Patient with Me I'm from The 1900's Funny, Vintage T-Shirt",
+      image: "https://via.placeholder.com/500x500?text=1900s+Vintage+T-Shirt",
+    },
+    {
+      title: "Please Be Patient with Me I'm from The 1900's, Vintage Design T-Shirt",
+      image: "https://via.placeholder.com/500x500?text=Retro+TV+T-Shirt",
+    },
+  ];
 
-    :root {
-      --bg:        #0a0a0b;
-      --surface:   #111113;
-      --border:    #222226;
-      --accent:    #f0a500;
-      --accent2:   #ff6a00;
-      --text:      #e8e8ea;
-      --muted:     #6b6b75;
-      --success:   #22c55e;
-      --mono: 'DM Mono', monospace;
-      --display: 'Syne', sans-serif;
-      --body: 'Instrument Sans', sans-serif;
-    }
+  return (
+    <div className="min-h-screen bg-black text-white font-sans">
+      {/* Header */}
+      <header className="border-b border-zinc-800 bg-zinc-950 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div>
+            <h1 className="text-3xl font-bold tracking-wide">Achraf Chakir</h1>
+            <p className="text-zinc-400 text-sm mt-1">
+              Print on Demand Portfolio / Independent Designer
+            </p>
+          </div>
 
-    html { scroll-behavior: smooth; }
+          <nav className="flex gap-6 text-sm text-zinc-300">
+            <a href="#portfolio" className="hover:text-white transition">
+              Portfolio
+            </a>
+            <a href="#about" className="hover:text-white transition">
+              About
+            </a>
+            <a href="#contact" className="hover:text-white transition">
+              Contact
+            </a>
+            <a href="#legal" className="hover:text-white transition">
+              Legal
+            </a>
+          </nav>
+        </div>
+      </header>
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--body);
-      font-size: 16px;
-      line-height: 1.6;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+      {/* Hero */}
+      <section className="max-w-7xl mx-auto px-6 py-20 text-center">
+        <div className="inline-block px-4 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-sm text-zinc-300 mb-6">
+          Merch by Amazon • Print on Demand
+        </div>
 
-    /* ── grid noise overlay ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: 0;
-    }
+        <h2 className="text-5xl md:text-6xl font-extrabold leading-tight max-w-4xl mx-auto">
+          Creative T-Shirt Designs for Online Marketplaces
+        </h2>
 
-    /* ── top glow ── */
-    body::after {
-      content: '';
-      position: fixed;
-      top: -200px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 500px;
-      background: radial-gradient(ellipse, rgba(240,165,0,.12) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .wrap {
-      position: relative;
-      z-index: 1;
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* ── nav bar ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      border-bottom: 1px solid var(--border);
-      background: rgba(10,10,11,.85);
-      backdrop-filter: blur(12px);
-    }
-    nav .wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 56px;
-    }
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: .08em;
-    }
-    .nav-link {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: .06em;
-      transition: color .2s;
-    }
-    .nav-link:hover { color: var(--accent); }
-    .nav-badge {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 3px 10px;
-      border-radius: 2px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    /* ── hero ── */
-    header {
-      padding: 96px 0 72px;
-      position: relative;
-    }
-    .tag-line {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--accent);
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .tag-line::before {
-      content: '';
-      display: inline-block;
-      width: 24px;
-      height: 1px;
-      background: var(--accent);
-    }
-    h1 {
-      font-family: var(--display);
-      font-size: clamp(38px, 7vw, 68px);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -.02em;
-      color: var(--text);
-      margin-bottom: 28px;
-    }
-    h1 em {
-      font-style: normal;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .description {
-      font-size: 17px;
-      color: #aaaaaf;
-      max-width: 580px;
-      line-height: 1.75;
-      margin-bottom: 40px;
-    }
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(34,197,94,.08);
-      border: 1px solid rgba(34,197,94,.2);
-      padding: 8px 16px;
-      border-radius: 100px;
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--success);
-      letter-spacing: .06em;
-    }
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--success);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: .4; transform: scale(.7); }
-    }
-
-    /* ── divider ── */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0;
-    }
-
-    /* ── section ── */
-    section { padding: 64px 0; }
-    section + section { border-top: 1px solid var(--border); }
-
-    .section-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .section-label span { color: var(--accent); }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    h2 {
-      font-family: var(--display);
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text);
-    }
-    p { color: #9999a3; line-height: 1.75; }
-
-    /* ── features grid ── */
-    .features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      margin-top: 40px;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    @media (max-width: 540px) { .features { grid-template-columns: 1fr; } }
-
-    .feature {
-      background: var(--surface);
-      padding: 28px 28px 32px;
-      transition: background .2s;
-    }
-    .feature:hover { background: #16161a; }
-
-    .feat-icon {
-      width: 38px;
-      height: 38px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 18px;
-      font-size: 18px;
-      background: var(--bg);
-    }
-    .feature h3 {
-      font-family: var(--body);
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .feature p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
-
-    /* ── disclaimer card ── */
-    .disclaimer {
-      background: rgba(240,165,0,.05);
-      border: 1px solid rgba(240,165,0,.2);
-      border-left: 3px solid var(--accent);
-      padding: 24px 28px;
-      border-radius: 4px;
-      margin-top: 8px;
-    }
-    .disclaimer p {
-      color: #c8a052;
-      font-size: 14.5px;
-      line-height: 1.7;
-    }
-    .disclaimer strong { color: var(--accent); }
-
-    /* ── about row ── */
-    .about-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      margin-top: 8px;
-    }
-    .avatar {
-      flex-shrink: 0;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      display: grid;
-      place-items: center;
-      font-size: 22px;
-    }
-    .about-text { flex: 1; }
-    .about-text strong {
-      display: block;
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 6px;
-      font-family: var(--mono);
-      letter-spacing: .04em;
-    }
-    .about-text p { font-size: 14.5px; }
-
-    /* ── contact ── */
-    .contact-block {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 12px 20px;
-      border-radius: 4px;
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--text);
-      text-decoration: none;
-      transition: border-color .2s, color .2s;
-    }
-    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
-    .contact-link svg { width: 16px; height: 16px; flex-shrink: 0; }
-
-    /* ── footer ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 0;
-    }
-    footer .wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    footer p { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-    footer span { color: var(--border); }
-
-    /* ── policy sections ── */
-    .policy-meta {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-    .policy-block {
-      margin-top: 28px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-    }
-    .policy-block h3 {
-      font-family: var(--body);
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--accent);
-      margin-bottom: 10px;
-      letter-spacing: .01em;
-    }
-    .policy-block p + p { margin-top: 10px; }
-    .policy-list {
-      list-style: none;
-      margin: 12px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .policy-list li {
-      font-size: 14.5px;
-      color: #9999a3;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      line-height: 1.6;
-    }
-    .policy-list li::before {
-      content: '→';
-      color: var(--accent);
-      font-family: var(--mono);
-      font-size: 12px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .inline-link {
-      color: var(--accent);
-      text-decoration: none;
-      font-family: var(--mono);
-      font-size: 13px;
-    }
-    .inline-link:hover { text-decoration: underline; }
-
-    /* ── animations ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(18px);
-      animation: fadeUp .6s ease forwards;
-    }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .delay-1 { animation-delay: .1s; }
-    .delay-2 { animation-delay: .22s; }
-    .delay-3 { animation-delay: .34s; }
-    .delay-4 { animation-delay: .46s; }
-  </style>
-</head>
-<body>
-
-<!-- ── NAV ── -->
-<nav>
-  <div class="wrap">
-    <div class="nav-logo">ADS_AUTO /</div>
-    <div style="display:flex;align-items:center;gap:16px">
-      <a href="#privacy" class="nav-link">Privacy</a>
-      <a href="#terms" class="nav-link">Terms</a>
-      <div class="nav-badge">Internal Tool</div>
-    </div>
-  </div>
-</nav>
-
-<!-- ── HERO ── -->
-<div class="wrap">
-  <header>
-    <div class="tag-line fade-in">Amazon PPC · Merch by Amazon</div>
-    <h1 class="fade-in delay-1">
-      Amazon Ads<br/><em>Automation Tool</em>
-    </h1>
-    <p class="description fade-in delay-2">
-      A private internal tool built to automate Amazon PPC optimization for
-      Merch&nbsp;by&nbsp;Amazon campaigns. Analyze performance, manage bids, and
-      apply rule-based automation to improve advertising efficiency.
-    </p>
-    <div class="status-pill fade-in delay-3">
-      <span class="dot"></span>
-      Active · Internal Use Only
-    </div>
-  </header>
-</div>
-
-<hr class="divider" />
-
-<!-- ── FEATURES ── -->
-<div class="wrap">
-  <section>
-    <div class="section-label"><span>01</span> Core Features</div>
-    <h2>What the tool does</h2>
-    <p>Rule-based automation and analytics designed to reduce wasted ad spend and scale what's working.</p>
-
-    <div class="features">
-      <div class="feature">
-        <div class="feat-icon">⚡</div>
-        <h3>Automatic Bid Optimization</h3>
-        <p>Adjusts bids in real-time based on performance signals to maximize ROI across all campaigns.</p>
-      </div>
-      <div class="feature">
-        <div class="feat-icon">📊</div>
-        <h3>Keyword Performance Tracking</h3>
-        <p>Monitors keyword-level metrics and surfaces insights to focus spend on high-converting terms.</p>
-      </div>
-      <div class="feature">
-        <div class="feat-icon">🛑</div>
-        <h3>Stop-Loss Rules</h3>
-        <p>Automatically pauses or limits spend on non-performing keywords before they drain the budget.</p>
-      </div>
-      <div class="feature">
-        <div class="feat-icon">🔍</div>
-        <h3>Search Term Analysis</h3>
-        <p>Analyzes search term reports to identify new opportunities and eliminate irrelevant traffic.</p>
-      </div>
-      <div class="feature">
-        <div class="feat-icon">🎯</div>
-        <h3>ACOS-Based Adjustments</h3>
-        <p>Uses target ACOS thresholds to automatically scale bids up or down per campaign goal.</p>
-      </div>
-      <div class="feature">
-        <div class="feat-icon">🔄</div>
-        <h3>Rule-Based Automation</h3>
-        <p>Configurable automation rules that run on a schedule, reducing manual campaign management time.</p>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ── DISCLAIMER ── -->
-<div class="wrap">
-  <section>
-    <div class="section-label"><span>02</span> Usage Policy</div>
-    <h2>Important Disclaimer</h2>
-    <div class="disclaimer">
-      <p>
-        <strong>For personal and internal use only.</strong> This tool is strictly developed for private
-        use and is <strong>not shared, sold, or offered as a commercial product or service</strong> to any
-        third party. It is not affiliated with, endorsed by, or connected to Amazon.com, Inc. in any way.
-        All usage complies with Amazon's terms of service.
-      </p>
-    </div>
-  </section>
-</div>
-
-<!-- ── ABOUT ── -->
-<div class="wrap">
-  <section>
-    <div class="section-label"><span>03</span> About</div>
-    <h2>About Us</h2>
-    <div class="about-row">
-      <div class="avatar">🎨</div>
-      <div class="about-text">
-        <strong>Achraf Chakir — Independent Designer</strong>
-        <p>
-          This tool is developed and operated by <strong style="color:var(--text)">Achraf Chakir</strong>,
-          an independent designer and Merch&nbsp;by&nbsp;Amazon seller — not an agency or company.
-          All designs, campaigns, and automation are managed personally, ensuring full transparency
-          and direct accountability in every aspect of the brand.
+        <p className="text-zinc-400 text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
+          Independent designer showcasing original print-on-demand artwork and apparel concepts sold online.
         </p>
-      </div>
+      </section>
+
+      {/* Portfolio */}
+      <section id="portfolio" className="max-w-7xl mx-auto px-6 pb-20">
+        <div className="flex items-center justify-between mb-10">
+          <div>
+            <h3 className="text-3xl font-bold">Featured Products</h3>
+            <p className="text-zinc-400 mt-2">
+              A selection of t-shirt designs available online.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {products.map((product, index) => (
+            <div
+              key={index}
+              className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-xl hover:scale-[1.02] transition duration-300"
+            >
+              <div className="aspect-square overflow-hidden bg-zinc-950">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <div className="p-5">
+                <h4 className="font-semibold text-base leading-relaxed text-zinc-100">
+                  {product.title}
+                </h4>
+
+                <button className="mt-5 w-full rounded-2xl bg-white text-black py-3 font-medium hover:bg-zinc-200 transition">
+                  View Design
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* About */}
+      <section
+        id="about"
+        className="max-w-5xl mx-auto px-6 py-20 border-t border-zinc-800"
+      >
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 text-center shadow-xl">
+          <h3 className="text-3xl font-bold mb-5">About Me</h3>
+
+          <p className="text-zinc-300 text-lg leading-relaxed max-w-3xl mx-auto">
+            I’m an independent designer and online seller. This portfolio showcases a selection of my print-on-demand products and creative apparel designs available on online marketplaces.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section
+        id="contact"
+        className="max-w-5xl mx-auto px-6 py-20 border-t border-zinc-800"
+      >
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 text-center shadow-xl">
+          <h3 className="text-3xl font-bold mb-4">Contact</h3>
+
+          <p className="text-zinc-400 mb-6">
+            For business inquiries or collaborations:
+          </p>
+
+          <a
+            href="mailto:yahya.cr21@gmail.com"
+            className="inline-block text-lg font-semibold bg-white text-black px-8 py-4 rounded-2xl hover:bg-zinc-200 transition"
+          >
+            yahya.cr21@gmail.com
+          </a>
+        </div>
+      </section>
+
+      {/* Legal */}
+      <section
+        id="legal"
+        className="max-w-7xl mx-auto px-6 py-20 border-t border-zinc-800"
+      >
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-xl">
+            <h3 className="text-2xl font-bold mb-4">Privacy Policy</h3>
+
+            <p className="text-zinc-400 leading-relaxed text-sm">
+              This website serves as a personal portfolio showcasing print-on-demand
+              artwork and products designed by Achraf Chakir. No direct purchases
+              are processed through this website. External marketplaces may have
+              their own privacy policies and terms.
+            </p>
+          </div>
+
+          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 shadow-xl">
+            <h3 className="text-2xl font-bold mb-4">Terms of Service</h3>
+
+            <p className="text-zinc-400 leading-relaxed text-sm">
+              All designs displayed are presented as part of a portfolio. Product
+              availability, pricing, and fulfillment are managed by third-party
+              marketplaces. Unauthorized copying or redistribution of artwork is
+              prohibited.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-zinc-800 py-8 text-center text-zinc-500 text-sm">
+        © {new Date().getFullYear()} Achraf Chakir — Print on Demand Portfolio
+      </footer>
     </div>
-    <div class="disclaimer" style="margin-top:24px;border-left-color:var(--muted);background:rgba(255,255,255,.02)">
-      <p style="color:var(--muted)">
-        <strong style="color:var(--text)">Transparency note:</strong> The name displayed on this website
-        matches exactly the name registered on the Amazon seller account. This page exists to provide
-        a verifiable online presence for Amazon's brand review process.
-      </p>
-    </div>
-  </section>
-</div>
-
-<!-- ── CONTACT ── -->
-<div class="wrap">
-  <section>
-    <div class="section-label"><span>04</span> Contact</div>
-    <h2>Get in Touch</h2>
-    <p>For any inquiries related to this tool or its development.</p>
-    <div class="contact-block" style="margin-top:24px">
-      <a class="contact-link" href="mailto:yahya.cr21@gmail.com">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <rect x="2" y="4" width="20" height="16" rx="2"/>
-          <path d="m2 7 10 7 10-7"/>
-        </svg>
-        yahya.cr21@gmail.com
-      </a>
-    </div>
-  </section>
-</div>
-
-<!-- ── PRIVACY POLICY ── -->
-<div class="wrap" id="privacy">
-  <section>
-    <div class="section-label"><span>05</span> Privacy Policy</div>
-    <h2>Privacy Policy</h2>
-    <p class="policy-meta">Last updated: May 2026</p>
-    <p style="margin-top:12px">
-      This website serves as the official brand portfolio and informational page for
-      <strong style="color:var(--text)">Achraf Chakir</strong>, an independent design brand
-      specialized in Print on Demand merchandise and e-commerce.
-    </p>
-
-    <div class="policy-block">
-      <h3>Information Collection</h3>
-      <p>This website does not require user registration, login, or submission of personal data.</p>
-      <p>Basic technical information such as browser type, device type, IP address, and general
-      usage data may be automatically collected by hosting providers for security, analytics,
-      and performance purposes.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>Use of Information</h3>
-      <p>Any automatically collected technical data is used solely for:</p>
-      <ul class="policy-list">
-        <li>Maintaining website functionality</li>
-        <li>Improving performance and stability</li>
-        <li>Monitoring security and preventing abuse</li>
-      </ul>
-      <p>We do not use this information for marketing, profiling, or advertising purposes.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>Data Sharing</h3>
-      <p>We do not sell, rent, or share personal data with third parties. However, the website
-      may be hosted on third-party infrastructure providers (such as GitHub Pages, Netlify, or
-      similar), which may process limited technical data necessary to deliver the website.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>External Links</h3>
-      <p>This website may contain links to external websites, including our official product
-      listings on Amazon. We are not responsible for the content or privacy practices of
-      those external sites.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>Data Security</h3>
-      <p>Reasonable measures are taken to maintain the security of the website, but no system
-      can be guaranteed 100% secure.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>Updates</h3>
-      <p>This Privacy Policy may be updated periodically to reflect changes in our business
-      or infrastructure.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>Contact</h3>
-      <p>For any questions, please contact:
-        <a href="mailto:yahya.cr21@gmail.com" class="inline-link">yahya.cr21@gmail.com</a>
-      </p>
-    </div>
-  </section>
-</div>
-
-<!-- ── TERMS OF SERVICE ── -->
-<div class="wrap" id="terms">
-  <section>
-    <div class="section-label"><span>06</span> Terms of Service</div>
-    <h2>Terms of Service</h2>
-    <p class="policy-meta">Last updated: May 2026</p>
-    <p style="margin-top:12px">By accessing this website, you agree to the following terms.</p>
-
-    <div class="policy-block">
-      <h3>Purpose</h3>
-      <p>This website provides a portfolio of designs and general information about
-      <strong style="color:var(--text)">Achraf Chakir</strong>. It is intended to showcase
-      our Print on Demand merchandise catalog and brand identity. We do not sell software,
-      APIs, or SaaS products.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>No Guarantees</h3>
-      <p>All content on this website is provided for informational purposes only. No guarantees
-      are made regarding accuracy, availability, or performance of any described products
-      or functionality.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>Intellectual Property</h3>
-      <p>All content, designs, and artwork presented on this website are the intellectual
-      property of the site operator unless otherwise stated. Unauthorized copying,
-      reproduction, or commercial use of our designs and content is strictly prohibited.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>Third-Party Services</h3>
-      <p>This website may rely on third-party hosting or infrastructure services. We are not
-      responsible for any interruptions or issues caused by these providers.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>Limitation of Liability</h3>
-      <p>Use of this website is at your own risk. The operator is not liable for any direct
-      or indirect damages resulting from the use of this website.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>Changes</h3>
-      <p>These Terms may be updated from time to time as the brand evolves.</p>
-    </div>
-
-    <div class="policy-block">
-      <h3>Contact</h3>
-      <p>For any questions, contact:
-        <a href="mailto:yahya.cr21@gmail.com" class="inline-link">yahya.cr21@gmail.com</a>
-      </p>
-    </div>
-  </section>
-</div>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="wrap">
-    <p>© 2026 Amazon Ads Automation Tool</p>
-    <p>
-      <a href="#privacy" class="nav-link">Privacy Policy</a>
-      <span style="margin:0 8px;color:var(--border)">·</span>
-      <a href="#terms" class="nav-link">Terms of Service</a>
-    </p>
-  </div>
-</footer>
-
-</body>
-</html>
+  );
+}
